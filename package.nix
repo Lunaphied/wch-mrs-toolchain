@@ -5,7 +5,7 @@
   writeShellScript,
 }:
 stdenv.mkDerivation {
-  pname = "wch-toolchain";
+  pname = "wch-mrs-toolchain";
   version = "230";
 
   src = requireFile {
@@ -15,7 +15,7 @@ stdenv.mkDerivation {
     #description = "Go to the Linux section and download the toolchain specifically.";
   };
 
-  builder = writeShellScript "extractor.sh" ''
+  builder = writeShellScript "extract-and-patch.sh" ''
     tar -xvf $src "Toolchain/RISC-V Embedded GCC12"
     mv "Toolchain/RISC-V Embedded GCC12/" $out
     autoPatchelf $out
